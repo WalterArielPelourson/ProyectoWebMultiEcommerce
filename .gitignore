@@ -1,0 +1,24 @@
+# Archivos temporales
+*.log
+tmp/
+temp/
+*.swp
+
+# Dependencias (si usas Node.js)
+node_modules/
+
+# Entornos virtuales (si usas Python)
+venv/
+.venv/
+
+# Archivos de configuración sensibles (¡Cuidado con esto!)
+config.ini
+secrets.json
+
+# IDE
+.idea/
+.vscode/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db

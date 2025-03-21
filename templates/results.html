@@ -1,0 +1,105 @@
+<!-- templates/results.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de la Búsqueda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Resultados de la Búsqueda para "{{ query }}"</h1>
+
+        {% if search_urls %}
+        <section class="search-links">
+            <h2>Enlaces de Búsqueda Directos</h2>
+            <ul>
+                {% for search_url in search_urls %}
+                <li>
+                    <!-- Muestra el logo correspondiente -->
+                    {% if search_url.name == "Amazon" %}
+                        <img src="{{ url_for('static', filename='amazon_logo.png') }}" alt="Amazon Logo" class="ecommerce-logo">
+                    {% elif search_url.name == "Ebay" %}
+                        <img src="{{ url_for('static', filename='ebay_logo.png') }}" alt="Ebay Logo" class="ecommerce-logo">
+                    {% elif search_url.name == "Aliexpress" %}
+                        <img src="{{ url_for('static', filename='aliexpress_logo.png') }}" alt="Aliexpress Logo" class="ecommerce-logo">
+                    {% elif search_url.name == "Walmart" %}
+                        <img src="{{ url_for('static', filename='walmart_logo.png') }}" alt="Walmart Logo" class="ecommerce-logo">
+                    {% elif search_url.name == "Mercado Libre" %}
+                        <img src="{{ url_for('static', filename='mercadolibre_logo.png') }}" alt="Mercado Libre Logo" class="ecommerce-logo">
+                    {% elif search_url.name == "Alibaba" %}
+                        <img src="{{ url_for('static', filename='alibaba_logo.png') }}" alt="Alibaba Logo" class="ecommerce-logo">
+                    
+                    {% endif %}
+
+                    <a href="{{ search_url.url }}" target="_blank">Ver Resultados en {{ search_url.name }}</a><br>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        {% if results %}
+        <section class="products">
+            <h2>Productos Encontrados</h2>
+            <div class="product-grid">
+                {% for product in results %}
+                <div class="product-card">
+                    <h3>{{ product.title }}</h3>
+                    <p><a href="{{ product.link }}" target="_blank">Ver Producto</a></p>
+                    <p>Rating: {{ product.rating }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <br>
+        {% else %}
+        <p>Selecciona el E-commerce y accede a tu producto buscado </p>
+        {% endif %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <section class="feedback-form">
+            <h2>Cuéntanos tu Experiencia</h2>
+            <form action="/feedback" method="post">
+                <input type="hidden" name="query" value="{{ query }}">
+                <input type="hidden" name="found_results" value="{{ 'yes' if results else 'no' }}">
+
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required>
+
+                <label for="nacionalidad">Nacionalidad:</label>
+                <input type="text" id="nacionalidad" name="nacionalidad" required>
+
+                <label for="satisfaccion">Grado de Satisfacción:</label>
+                <select id="satisfaccion" name="satisfaccion" required>
+                    <option value="muy_bueno">Muy Bueno</option>
+                    <option value="bueno">Bueno</option>
+                    <option value="regular">Regular</option>
+                    <option value="malo">Malo</option>
+                </select>
+
+                <label for="feedback">Comentarios Adicionales:</label>
+                <textarea name="feedback" id="feedback" placeholder="Cuéntanos tu experiencia..." rows="4" required></textarea>
+                <br>
+                <button type="submit">Enviar Feedback</button>
+            </form>
+        </section>
+
+
+
+    </div>
+    <footer>
+        <p>© 2025 Buscador de Productos. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

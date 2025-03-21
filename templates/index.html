@@ -1,0 +1,142 @@
+
+<!--<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Productos Multi-E-commerce</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Estilos para el contador de visitas */
+        .visitor-counter {
+            position: fixed; /* Fija el contador en la pantalla */
+            bottom: 10px; /* Distancia desde la parte inferior */
+            right: 10px; /* Distancia desde la parte derecha */
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+            padding: 5px 10px; /* Espacio interno */
+            border-radius: 5px; /* Bordes redondeados */
+            font-size: 12px; /* Tamaño de la fuente */
+            color: #333; /* Color del texto */
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encuentra las Mejores Ofertas</h1>
+        <p>Busca productos en múltiples tiendas online con un solo click.</p>
+        <form action="/search" method="post" class="search-form">
+            <input type="text" name="query" placeholder="¿Qué estás buscando?" required>
+            <br>
+            <br>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <footer>
+        <p>© 2025 Buscador de Productos. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Contador de Visitas -->
+    <!--<div class="visitor-counter">
+        Visitas: {{ visitas }}
+    </div>
+
+</body>
+</html>!-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Productos Multi-E-commerce</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Estilos para el contador de visitas */
+        .visitor-counter {
+            position: fixed; /* Fija el contador en la pantalla */
+            bottom: 10px; /* Distancia desde la parte inferior */
+            right: 10px; /* Distancia desde la parte derecha */
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+            padding: 5px 10px; /* Espacio interno */
+            border-radius: 5px; /* Bordes redondeados */
+            font-size: 12px; /* Tamaño de la fuente */
+            color: #333; /* Color del texto */
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        }
+
+        /* Estilos para el carrito */
+        .cart-icon {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            overflow: hidden;  /* Prevents scrollbars on keyframes that shift content horizontally */
+        }
+
+        .cart-icon img {
+            width: 100%;
+            height: auto;
+            position: absolute; /* Crucial for the animation */
+            top: 0;
+            left: 0;
+
+        }
+        /* Animación para el carrito (movimiento horizontal le indica a traves del eje x) */
+        @keyframes cartAnimation {
+            0% { left: 0; } /* Start at the left edge */
+            100% { left: 100%; } /* End at the right edge */
+        }
+       
+        .cart-icon {
+        position: relative; /* Absolute positioning is essential */
+        top: -20px; /* Adjust as needed */
+        width: 30px;
+        height: 30px;
+        overflow: visible; /* Let it overflow */
+        animation: cartAnimation 10s linear infinite; /* Adjust duration as needed */
+        }  
+
+        .cart-icon img {
+        width: 100%;
+        height: auto;
+        position: absolute; /* Required to make `left` work with animation */
+        top: 0;
+        left: 0;
+
+        }   
+
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encuentra las Mejores Ofertas</h1>
+        <p>Busca productos en múltiples tiendas online con un solo click.</p>
+        <form action="/search" method="post" class="search-form">
+            <input type="text" name="query" placeholder="¿Qué estás buscando?" required>
+            <br>
+            <br>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+    <br>
+    <div class="cart-icon">
+        <img src="{{ url_for('static', filename='cart.png') }}" alt="Carrito de Compras">
+    </div>
+   
+    <footer>
+        <p>© 2025 Buscador de Productos. Todos los derechos reservados.</p>
+       
+    </footer>
+
+    <!-- Contador de Visitas -->
+    <div class="visitor-counter">
+        Visitas: {{ visitas }}
+    </div>
+
+</body>
+</html>
